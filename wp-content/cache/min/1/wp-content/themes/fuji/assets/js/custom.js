@@ -1,0 +1,2 @@
+jQuery(document).ready(function(){if(/Android|webOS|iPhone|iPod|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){jQuery('#mobile-menu-slide').mmenu({"extensions":["position-front","theme-dark","pagedim-black"],})}
+jQuery('.fuji-gallery-owl').owlCarousel({loop:!0,margin:5,nav:!0,autoWidth:!0,autoplay:!0,autoplayTimeout:5000,autoplayHoverPause:!0,responsive:{0:{items:1,margin:0},600:{items:3,margin:0},1000:{items:5}}})})

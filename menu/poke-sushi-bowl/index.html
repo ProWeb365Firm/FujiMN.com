@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js lt-ie9" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8) ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.v="1.2.3",this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{let r=arguments[0][e];delete arguments[0][e],arguments[0][t(e)]=r})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Page Title 
+  ================================================== -->
+  <title>Poke Sushi Bowl Archives - FujiMN</title><link rel="stylesheet" href="../../wp-content/cache/min/1/8ab23ac86e32ee8dbcb8e1484fe4f62c.css" media="all" data-minify="1" />
+  <link rel="profile" href="https://gmpg.org/xfn/11">
+  <!-- Favicons
+  ================================================== -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=UA-151955648-1"></script>
+<script type="rocketlazyloadscript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-151955648-1');
+</script>
+<meta name="robots" content="noindex, nofollow" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v25.6 - https://yoast.com/wordpress/plugins/seo/ -->
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Poke Sushi Bowl Archives - FujiMN" />
+	<meta property="og:url" content="https://fujimn.com/menu/poke-sushi-bowl/" />
+	<meta property="og:site_name" content="FujiMN" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://fujimn.com/menu/poke-sushi-bowl/","url":"https://fujimn.com/menu/poke-sushi-bowl/","name":"Poke Sushi Bowl Archives - FujiMN","isPartOf":{"@id":"https://fujimn.com/#website"},"breadcrumb":{"@id":"https://fujimn.com/menu/poke-sushi-bowl/#breadcrumb"},"inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://fujimn.com/menu/poke-sushi-bowl/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fujimn.com/"},{"@type":"ListItem","position":2,"name":"Poke Sushi Bowl"}]},{"@type":"WebSite","@id":"https://fujimn.com/#website","url":"https://fujimn.com/","name":"FujiMN","description":"Japanese Steakhouse","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://fujimn.com/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+
+<style id='rs-plugin-settings-inline-css' type='text/css'>
+#rs-demo-id {}
+</style>
+
+
+
+
+
+
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="../../wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="../../wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="../../wp-content/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js?ver=5.4.8" id="tp-tools-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="../../wp-content/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js?ver=5.4.8" id="revmin-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="../../wp-content/themes/fuji/assets/js/jquery-3.3.1.min.js?ver=6.6.12" id="jquery-3.3.1.min-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="../../wp-content/themes/fuji/assets/js/jquery.fancybox.min.js?ver=6.6.12" id="jquery.fancybox-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript" data-rocket-src="../../wp-content/themes/fuji/assets/js/owl.carousel.min.js?ver=6.6.12" id="owl.carousel.min-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="../../wp-content/cache/min/1/wp-content/themes/fuji/assets/js/jquery.mmenu.all.js?ver=1782146122" id="jquery.mmenu.all.min-js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="../../wp-content/cache/min/1/wp-content/themes/fuji/assets/js/custom.js?ver=1782146122" id="custom-js-js"></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">function setREVStartSize(e){									
+						try{ e.c=jQuery(e.c);var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;
+							if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0))}f=u}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})					
+						}catch(d){console.log("Failure at Presize of Slider:"+d)}						
+					};</script>
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript></head>
+<body data-rsssl=1 class="archive tax-product-cat term-poke-sushi-bowl term-26">
+    <div class="wrapper">
+        <header id="header" class="w-100 float-left">
+            <div class="container">
+                <a href="#mobile-menu-slide" class="mobile-menu"><i class="fas fa-bars"></i></a>
+                <div class="logo float-left">                    
+                    <a href="../../" title="FujiMN">
+                        <img width="254" height="78" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20254%2078'%3E%3C/svg%3E" alt="FujiMN" data-lazy-src="../../wp-content/uploads/2019/02/logo-red.webp"><noscript><img width="254" height="78" src="../../wp-content/uploads/2019/02/logo-red.webp" alt="FujiMN"></noscript>
+                    </a>
+                    <p class="logo-sologan">Sushi & Asian Bistro | Chinese Food, Ramen & Dim Sum</p>
+                </div>
+                <div id="primary_ab" class="main-menu float-right">
+                                        <ul data-breakpoint="800" id="menu-primary-menu" class="menu-top"><li id="menu-item-15" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-15"><a href="../../">Home</a></li>
+<li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="../../about/">About</a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="../../menu/">Menu</a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="../../special-offers/">Special Offers</a></li>
+<li id="menu-item-384" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-384"><a href="../../daily-specials/">Daily Specials</a></li>
+<li id="menu-item-17" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17"><a href="../../contact/">Contact</a></li>
+</ul>                                        
+                </div>
+                <div class="top-contact">
+                    <a href="https://www.google.com/maps?ll=44.021884,-92.463698&z=16&t=m&hl=vi&gl=HK&mapclient=embed&q=7+2nd+St+SW+Rochester,+MN+55902+Hoa+K%E1%BB%B3"><img width="14" height="20" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2014%2020'%3E%3C/svg%3E" data-lazy-src="../../wp-content/themes/fuji/assets/images/icon-maps.png"><noscript><img width="14" height="20" src="../../wp-content/themes/fuji/assets/images/icon-maps.png"></noscript> Fuji</a> <span><a href="tel:(507) 289-0568">(507) 289-0568</a></span>
+                </div>
+            </div>
+        </header>
+    
+    
+    
+
+
+<div class="break-title w-100 float-left">
+    <div class="container">
+        <h1>Poke Sushi Bowl</h1>
+    </div>
+</div>
+<div id="menu" class="page-content w-100 float-left">
+    <div class="container">
+        
+        <div class="table-menu">
+            <div class="left-menu">
+                <ul class="list-unstyled">
+                                                            <li class="">
+                        <a href="../../menu/bento-box-japanese-box-style/">Bento Box (Japanese Box Style)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/chefs-special-from-kitchen/">Chef's Special From Kitchen</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/chefs-special-roll/">Chef’s Special Roll</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/chinese-food-beef/">Chinese Food (Beef)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/chinese-food-chicken/">Chinese Food (Chicken)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/chinese-food-shirmp/">Chinese Food (Shirmp)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/chinese-food-vegetable/">Chinese Food (Vegetable)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/dessert/">Dessert</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/dinner-bento-box-combination-dinner-box/">Dinner Bento Box (Combination Dinner Box)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/entrees-from-kitchen/">Entrees From Kitchen</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/fried-rice/">Fried Rice</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/fuji-style-steak/">Fuji Style Steak</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/fuji-style-steak-lunch-special/">Fuji Style Steak Lunch Special</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/hibachi/">Hibachi</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/hibachi-or-teriyaki/">Hibachi Or Teriyaki</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/hot-appetizer/">Hot Appetizer</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/kids-menu/">Kid’s Menu</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/lunch-bento/">Lunch Bento</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/lunch-special-chinese-food-10/">Lunch Special (Chinese Food $10.00)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/lunch-special-sushi-lunch-special/">Lunch Special (Sushi Lunch Special)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/maki-roll-or-hand-roll/">Maki Roll Or Hand Roll</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/noodles/">Noodles</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/noodles-served-with-green-salad/">Noodles (Served with green salad)</a>
+                    </li>
+                                        <li class="active">
+                        <a href="../../menu/poke-sushi-bowl/">Poke Sushi Bowl</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/poke-sushi-bowl-salad/">Poke Sushi Bowl &amp; Salad</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/ramen/">Ramen</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/roll-special/">Roll Special</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/salads/">Salads</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/soft-drink/">Soft Drink</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/soups/">Soups</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/sushi-appetizers/">Sushi Appetizers</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/sushi-entrees/">Sushi Entrees</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/sushi-or-sashimi-a-la-carte/">Sushi Or Sashimi (A La Carte)</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/susi-lunch-special/">Susi Lunch Special</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/szechuan-spicy-style/">Szechuan Spicy Style</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/tempura-katsu/">Tempura &amp; Katsu</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/teriyaki-or-hibachi/">Teriyaki Or Hibachi</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/udon-or-soba/">Udon Or Soba</a>
+                    </li>
+                                        <li class="">
+                        <a href="../../menu/vegetable-maki-roll/">Vegetable Maki Roll</a>
+                    </li>
+                                    </ul>
+            </div><!--left-menu-->
+            <div class="right-menu">
+                <ul class="list-unstyled" data-simplebar>
+                                        <li>
+                        <div class="thumb-product d-none">
+                            <img width="150" height="139" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20139'%3E%3C/svg%3E" data-lazy-src="../../wp-content/themes/fuji/assets/images/product_soup.png"><noscript><img width="150" height="139" src="../../wp-content/themes/fuji/assets/images/product_soup.png"></noscript>
+                        </div>
+                        <div class="content-product">
+                            <h3>Vegetable Poke Bowl</h3>
+                            <p>Seaweed salad,fried bean curd,pickled radish</p>
+                        </div>
+                        <div class="price">
+                            15.00                        </div>
+                    </li>
+                                        <li>
+                        <div class="thumb-product d-none">
+                            <img width="150" height="139" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20139'%3E%3C/svg%3E" data-lazy-src="../../wp-content/themes/fuji/assets/images/product_soup.png"><noscript><img width="150" height="139" src="../../wp-content/themes/fuji/assets/images/product_soup.png"></noscript>
+                        </div>
+                        <div class="content-product">
+                            <h3>Salmon Poke Bowl</h3>
+                            <p>Fresh Salmon,crab meat,egg custard</p>
+                        </div>
+                        <div class="price">
+                            17.00                        </div>
+                    </li>
+                                        <li>
+                        <div class="thumb-product d-none">
+                            <img width="150" height="139" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20139'%3E%3C/svg%3E" data-lazy-src="../../wp-content/themes/fuji/assets/images/product_soup.png"><noscript><img width="150" height="139" src="../../wp-content/themes/fuji/assets/images/product_soup.png"></noscript>
+                        </div>
+                        <div class="content-product">
+                            <h3>Tuna Poke Bowl</h3>
+                            <p>Fresh tuna, crab meat,egg custard</p>
+                        </div>
+                        <div class="price">
+                            18.00                        </div>
+                    </li>
+                                                        </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="side-hour" class="open-house w-100 float-left">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Open Hours</h4>
+            </div>
+            <div class="col-md-12">
+                <ul class="list-unstyled">
+                    <li class="list-inline-item">
+                        <h5>Monday - Thursday</h5>
+                        <p>11:00AM - 10:00PM</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <h5>Friday</h5>
+                        <p>11:00AM - 10:30PM</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <h5>Saturday</h5>
+                        <p>11:30AM - 10:30PM</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <h5>Sunday</h5>
+                        <p>Closed</p>
+                    </li>
+                </ul>
+            </div>
+        </div>      
+    </div>
+</div><!--open-house--><script type="rocketlazyloadscript" data-rocket-src="../../wp-content/themes/fuji/assets/js/jquery.scrolly.min.js"></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-src="../../wp-content/cache/min/1/wp-content/themes/fuji/assets/js/simplebar.js?ver=1782147465"></script>
+    <footer id="footer" class="w-100 float-left">
+            <div class="footer-top w-100 float-left">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 left-ft">
+                            <a href="../../" title="FujiMN">
+                                <img width="254" height="78" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20254%2078'%3E%3C/svg%3E" alt="FujiMN" data-lazy-src="../../wp-content/uploads/2019/02/logo-red.webp"><noscript><img width="254" height="78" src="../../wp-content/uploads/2019/02/logo-red.webp" alt="FujiMN"></noscript>
+                            </a>
+                            <p class="logo-sologan">Sushi & Asian Bistro | Chinese Food, Ramen & Dim Sum</p>
+                            <p>Address: 7 2nd Street SW, Rochester Minnesota, 55902</p>
+                            <p>Phone: (507) 289-0568</p>
+                        </div><!--col-md-4-->
+                        <div class="col-md-8 right-ft">
+                            <iframe loading="lazy" src="about:blank" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen data-rocket-lazyload="fitvidscompatible" data-lazy-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2412.509737833976!2d-92.46553212682156!3d44.021937060814224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87f75f633303a9ff%3A0x123f64135ae11e3a!2s7+2nd+St+SW%2C+Rochester%2C+MN+55902%2C+USA!5e0!3m2!1sen!2shk!4v1550635116702"></iframe><noscript><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2412.509737833976!2d-92.46553212682156!3d44.021937060814224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87f75f633303a9ff%3A0x123f64135ae11e3a!2s7+2nd+St+SW%2C+Rochester%2C+MN+55902%2C+USA!5e0!3m2!1sen!2shk!4v1550635116702" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe></noscript>
+                        </div><!--col-md-8-->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-last w-100 float-left">
+                <div class="container">
+                    <div class="col-left">
+                        <p>FujiMN.com © <script type="rocketlazyloadscript">document.write(new Date().getFullYear())</script>
+ - <a target="_blank" href="http://proweb365.com/">ProWeb365</a>:  <a target="_blank" href="https://proweb365.com/restaurant-marketing/website-design/">Restaurant Website Designers</a></p>
+                    </div>
+                    <div class="col-right">
+                                                <ul data-breakpoint="800" id="menu-footermenu" class="menu-top"><li id="menu-item-47" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-47"><a href="../../">Home</a></li>
+<li id="menu-item-48" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48"><a href="../../about/">About</a></li>
+<li id="menu-item-50" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-50"><a href="../../menu/">Menu</a></li>
+<li id="menu-item-51" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-51"><a href="../../special-offers/">Special Offers</a></li>
+<li id="menu-item-49" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"><a href="../../contact/">Contact</a></li>
+</ul>                                            </div>
+                </div>
+            </div>
+        </footer>
+    </div><!--wrapper-->
+
+    <div id="mobile-menu-slide">
+                <ul data-breakpoint="800" id="menu-primary-menu-1" class="menu-top"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-15"><a href="../../">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="../../about/">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><a href="../../menu/">Menu</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="../../special-offers/">Special Offers</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-384"><a href="../../daily-specials/">Daily Specials</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17"><a href="../../contact/">Contact</a></li>
+</ul>                            
+    </div>
+    <script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="../../wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script></body>
+</html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1795092262 -->
