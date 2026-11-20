@@ -34,7 +34,7 @@
 
   gtag('config', 'UA-151955648-1');
 </script>
-<meta name="robots" content="noindex, nofollow" />
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
 
 	<!-- This site is optimized with the Yoast SEO plugin v25.6 - https://yoast.com/wordpress/plugins/seo/ -->
 	<meta name="description" content="Contact Fuji Sushi Bar- Japanese restaurant - Address: 7 2nd Street SW, Rochester Minnesota, 55902" />
@@ -144,24 +144,26 @@
                 <b>Address:</b> 7 2nd Street SW, Rochester Minnesota, 55902 - <b>Phone:</b> (507) 289-0568            </p>
         </div>
         <div class="form-contact float-left w-100">
-            <div class="form-git-right">
+            <form class="form-git-right" id="fuji-contact" action="https://forms.fujimn.com/send.php" method="post" novalidate>
+                <input type="hidden" name="_back" value="/contact/">
+                <div style="position:absolute;left:-9999px" aria-hidden="true"><input type="text" name="website_url" tabindex="-1" autocomplete="off"></div>
                 <div class="form-group">
-                    <input type="text" id="fr-name" class="form-control" placeholder="Name (Required)">
+                    <input type="text" id="fr-name" name="name" class="form-control" placeholder="Name (Required)" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="fr-email" class="form-control" placeholder="Email (Required)">
+                    <input type="email" id="fr-email" name="email" class="form-control" placeholder="Email (Required)" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" id="fr-phone" class="form-control" placeholder="Phone">
+                    <input type="tel" id="fr-phone" name="phone" class="form-control" placeholder="Phone">
                 </div>
                 <div class="form-group">
-                    <textarea id="fr-message" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
+                    <textarea id="fr-message" name="message" class="form-control" cols="30" rows="10" placeholder="Message"></textarea>
                 </div>
                 <div class="form-group">                    
-                    <div class="g-recaptcha" data-sitekey="6LfKRZYUAAAAAJgtjLogiJJ3FsLqrOkYw8q2OMXw"></div>
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAF3nwn6YnOm37mYa"></div>
                 </div>
                 <div class="form-group">
-                    <a class="btn-contact btn-fuji">SEND <i class="fas fa-paper-plane"></i></a>
+                    <button type="submit" class="btn-contact btn-fuji" style="border:0;cursor:pointer;font:inherit">SEND <i class="fas fa-paper-plane"></i></button>
                 </div>
                 <div class="form-group">
                     <div class="result"></div>
@@ -171,7 +173,7 @@
                         <img width="670" height="727" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20670%20727'%3E%3C/svg%3E" data-lazy-src="../wp-content/themes/fuji/assets/images/fuji-maps.png"><noscript><img width="670" height="727" src="../wp-content/themes/fuji/assets/images/fuji-maps.png"></noscript>
                     </a>
                 </div>
-            </div>
+            </form>
 
         </div>
 
@@ -206,36 +208,28 @@
             </div>
         </div>      
     </div>
-</div><!--open-house--><script type="rocketlazyloadscript" data-rocket-src="https://www.google.com/recaptcha/api.js"></script>
-<script type="rocketlazyloadscript">
-    jQuery('.btn-contact').click(function() {
-        var name           = jQuery('#fr-name').val();
-        var email          = jQuery('#fr-email').val();
-        var phone          = jQuery('#fr-phone').val();
-        var mesage         = jQuery('#fr-message').val();
-
-        load_ajax(name);
-        function load_ajax(name){
-            jQuery.ajax({
-                url : 'https://fujimn.com/wp-admin/admin-ajax.php',
-                type : "post",
-                dataType:"html",
-                data : {
-                    'action'     : 'submit_contact', 
-                    'name'       : name,
-                    'email'      : email,
-                    'phone'      : phone,
-                    'mesage'     : mesage,
-                    captcha: grecaptcha.getResponse()
-                },
-                success: function (data){
-                    // alert(data.slice(0, -1));
-                    // location.reload();
-                    jQuery('.result').empty().append(data.slice(0, -1));
-                },
-            });
-        }       
-    })                          
+</div><!--open-house--><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script>
+(function () {
+    var form = document.getElementById('fuji-contact');
+    if (!form) return;
+    var out = form.querySelector('.result');
+    function say(msg, ok) { out.innerHTML = ''; var p = document.createElement('p'); p.textContent = msg; p.style.cssText = 'margin:0;color:' + (ok ? '#4caf50' : '#e53935'); out.appendChild(p); }
+    var sent = (location.search.match(/[?&]sent=(\d)/) || [])[1];
+    if (sent) {
+        say(sent === '1' ? 'Thank you! Your message has been sent. We will get back to you soon.' : 'Sorry, your message could not be sent. Please try again or call us at (507) 289-0568.', sent === '1');
+        form.scrollIntoView({ block: 'center' });
+    }
+    form.addEventListener('submit', function (e) {
+        var name = form.elements.name.value.trim(), email = form.elements.email.value.trim();
+        if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            e.preventDefault();
+            say('Please enter your name and a valid email address.', false);
+            return;
+        }
+        var b = form.querySelector('.btn-contact'); b.disabled = true; b.firstChild.textContent = 'SENDING ';
+    });
+})();
 </script>
     <footer id="footer" class="w-100 float-left">
             <div class="footer-top w-100 float-left">
