@@ -146,7 +146,7 @@
         <div class="form-contact float-left w-100">
             <form class="form-git-right" id="fuji-contact" action="https://forms.fujimn.com/send.php" method="post" novalidate>
                 <input type="hidden" name="_back" value="/contact/">
-                <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><input type="text" name="fx_hp" value="" tabindex="-1" autocomplete="new-password" data-lpignore="true" data-1p-ignore data-form-type="other"></div>
+                <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true"><input type="text" name="fx_hp" value="" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other"></div>
                 <div class="form-group">
                     <input type="text" id="fr-name" name="name" class="form-control" placeholder="Name (Required)" required>
                 </div>
@@ -227,6 +227,9 @@
             say('Please enter your name and a valid email address.', false);
             return;
         }
+        // A real visitor clicked SEND: clear the hidden spam-trap field in case the
+        // browser's autofill put something in it (bots that skip scripts still get caught).
+        if (form.elements.fx_hp) { form.elements.fx_hp.value = ''; }
         var b = form.querySelector('.btn-contact'); b.disabled = true; b.firstChild.textContent = 'SENDING ';
     });
 })();
